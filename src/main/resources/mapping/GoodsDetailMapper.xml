@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cqdx.finall.supertmarket.mapper.GoodsDetailMapper" >
+  <resultMap id="BaseResultMap" type="cqdx.finall.supertmarket.entity.GoodsDetail" >
+    <id column="goods_did" property="goodsDid" jdbcType="INTEGER" />
+    <result column="goods_stock" property="goodsStock" jdbcType="INTEGER" />
+    <result column="goods_rid" property="goodsRid" jdbcType="INTEGER" />
+    <result column="goods_style" property="goodsStyle" jdbcType="VARCHAR" />
+    <result column="goods_color" property="goodsColor" jdbcType="VARCHAR" />
+    <result column="goods_size" property="goodsSize" jdbcType="VARCHAR" />
+    <result column="goods_price" property="goodsPrice" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    goods_did, goods_stock, goods_rid, goods_style, goods_color, goods_size, goods_price
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cqdx.finall.supertmarket.entity.GoodsDetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from goods_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_detail
+    where goods_did = #{goodsDid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods_detail
+    where goods_did = #{goodsDid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cqdx.finall.supertmarket.entity.GoodsDetailExample" >
+    delete from goods_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cqdx.finall.supertmarket.entity.GoodsDetail" >
+    insert into goods_detail (goods_did, goods_stock, goods_rid, 
+      goods_style, goods_color, goods_size, 
+      goods_price)
+    values (#{goodsDid,jdbcType=INTEGER}, #{goodsStock,jdbcType=INTEGER}, #{goodsRid,jdbcType=INTEGER}, 
+      #{goodsStyle,jdbcType=VARCHAR}, #{goodsColor,jdbcType=VARCHAR}, #{goodsSize,jdbcType=VARCHAR}, 
+      #{goodsPrice,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="cqdx.finall.supertmarket.entity.GoodsDetail" >
+    insert into goods_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodsDid != null" >
+        goods_did,
+      </if>
+      <if test="goodsStock != null" >
+        goods_stock,
+      </if>
+      <if test="goodsRid != null" >
+        goods_rid,
+      </if>
+      <if test="goodsStyle != null" >
+        goods_style,
+      </if>
+      <if test="goodsColor != null" >
+        goods_color,
+      </if>
+      <if test="goodsSize != null" >
+        goods_size,
+      </if>
+      <if test="goodsPrice != null" >
+        goods_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodsDid != null" >
+        #{goodsDid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsStock != null" >
+        #{goodsStock,jdbcType=INTEGER},
+      </if>
+      <if test="goodsRid != null" >
+        #{goodsRid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsStyle != null" >
+        #{goodsStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsColor != null" >
+        #{goodsColor,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsSize != null" >
+        #{goodsSize,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPrice != null" >
+        #{goodsPrice,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cqdx.finall.supertmarket.entity.GoodsDetailExample" resultType="java.lang.Integer" >
+    select count(*) from goods_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update goods_detail
+    <set >
+      <if test="record.goodsDid != null" >
+        goods_did = #{record.goodsDid,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsStock != null" >
+        goods_stock = #{record.goodsStock,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsRid != null" >
+        goods_rid = #{record.goodsRid,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsStyle != null" >
+        goods_style = #{record.goodsStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsColor != null" >
+        goods_color = #{record.goodsColor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsSize != null" >
+        goods_size = #{record.goodsSize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsPrice != null" >
+        goods_price = #{record.goodsPrice,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update goods_detail
+    set goods_did = #{record.goodsDid,jdbcType=INTEGER},
+      goods_stock = #{record.goodsStock,jdbcType=INTEGER},
+      goods_rid = #{record.goodsRid,jdbcType=INTEGER},
+      goods_style = #{record.goodsStyle,jdbcType=VARCHAR},
+      goods_color = #{record.goodsColor,jdbcType=VARCHAR},
+      goods_size = #{record.goodsSize,jdbcType=VARCHAR},
+      goods_price = #{record.goodsPrice,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cqdx.finall.supertmarket.entity.GoodsDetail" >
+    update goods_detail
+    <set >
+      <if test="goodsStock != null" >
+        goods_stock = #{goodsStock,jdbcType=INTEGER},
+      </if>
+      <if test="goodsRid != null" >
+        goods_rid = #{goodsRid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsStyle != null" >
+        goods_style = #{goodsStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsColor != null" >
+        goods_color = #{goodsColor,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsSize != null" >
+        goods_size = #{goodsSize,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPrice != null" >
+        goods_price = #{goodsPrice,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where goods_did = #{goodsDid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cqdx.finall.supertmarket.entity.GoodsDetail" >
+    update goods_detail
+    set goods_stock = #{goodsStock,jdbcType=INTEGER},
+      goods_rid = #{goodsRid,jdbcType=INTEGER},
+      goods_style = #{goodsStyle,jdbcType=VARCHAR},
+      goods_color = #{goodsColor,jdbcType=VARCHAR},
+      goods_size = #{goodsSize,jdbcType=VARCHAR},
+      goods_price = #{goodsPrice,jdbcType=DECIMAL}
+    where goods_did = #{goodsDid,jdbcType=INTEGER}
+  </update>
+</mapper>
