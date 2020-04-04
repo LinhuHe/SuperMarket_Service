@@ -15,6 +15,14 @@ public class GoodsRough {
 
     private Date goodsDate;
 
+    private Integer goodsCollection;
+
+    private Integer goodsSales;
+
+    private String goodsMoreimg;
+
+    private Integer isOnSale;
+
     public Integer getGoodsRid() {
         return goodsRid;
     }
@@ -61,5 +69,37 @@ public class GoodsRough {
 
     public void setGoodsDate(Date goodsDate) {
         this.goodsDate = goodsDate;
+    }
+
+    public Integer getGoodsCollection() {
+        return goodsCollection;
+    }
+
+    public void setGoodsCollection(Integer goodsCollection) {
+        this.goodsCollection = goodsCollection;
+    }
+
+    public Integer getGoodsSales() {
+        return goodsSales;
+    }
+
+    public void setGoodsSales(Integer goodsSales) {
+        this.goodsSales = goodsSales;
+    }
+
+    public String getGoodsMoreimg() {
+        return goodsMoreimg;
+    }
+
+    public void setGoodsMoreimg(String goodsMoreimg) {
+        this.goodsMoreimg = goodsMoreimg;
+    }
+
+    public Integer getIsOnSale() {
+        return isOnSale;
+    }
+
+    public void setIsOnSale(Integer isOnSale) {
+        this.isOnSale = isOnSale;
     }
 }

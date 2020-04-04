@@ -504,6 +504,256 @@ public class GoodsRoughExample {
             addCriterion("goods_date not between", value1, value2, "goodsDate");
             return (Criteria) this;
         }
+
+        public Criteria andGoodsCollectionIsNull() {
+            addCriterion("goods_collection is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsCollectionIsNotNull() {
+            addCriterion("goods_collection is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsCollectionEqualTo(Integer value) {
+            addCriterion("goods_collection =", value, "goodsCollection");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsCollectionNotEqualTo(Integer value) {
+            addCriterion("goods_collection <>", value, "goodsCollection");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsCollectionGreaterThan(Integer value) {
+            addCriterion("goods_collection >", value, "goodsCollection");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsCollectionGreaterThanOrEqualTo(Integer value) {
+            addCriterion("goods_collection >=", value, "goodsCollection");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsCollectionLessThan(Integer value) {
+            addCriterion("goods_collection <", value, "goodsCollection");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsCollectionLessThanOrEqualTo(Integer value) {
+            addCriterion("goods_collection <=", value, "goodsCollection");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsCollectionIn(List<Integer> values) {
+            addCriterion("goods_collection in", values, "goodsCollection");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsCollectionNotIn(List<Integer> values) {
+            addCriterion("goods_collection not in", values, "goodsCollection");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsCollectionBetween(Integer value1, Integer value2) {
+            addCriterion("goods_collection between", value1, value2, "goodsCollection");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsCollectionNotBetween(Integer value1, Integer value2) {
+            addCriterion("goods_collection not between", value1, value2, "goodsCollection");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsSalesIsNull() {
+            addCriterion("goods_sales is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsSalesIsNotNull() {
+            addCriterion("goods_sales is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsSalesEqualTo(Integer value) {
+            addCriterion("goods_sales =", value, "goodsSales");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsSalesNotEqualTo(Integer value) {
+            addCriterion("goods_sales <>", value, "goodsSales");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsSalesGreaterThan(Integer value) {
+            addCriterion("goods_sales >", value, "goodsSales");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsSalesGreaterThanOrEqualTo(Integer value) {
+            addCriterion("goods_sales >=", value, "goodsSales");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsSalesLessThan(Integer value) {
+            addCriterion("goods_sales <", value, "goodsSales");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsSalesLessThanOrEqualTo(Integer value) {
+            addCriterion("goods_sales <=", value, "goodsSales");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsSalesIn(List<Integer> values) {
+            addCriterion("goods_sales in", values, "goodsSales");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsSalesNotIn(List<Integer> values) {
+            addCriterion("goods_sales not in", values, "goodsSales");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsSalesBetween(Integer value1, Integer value2) {
+            addCriterion("goods_sales between", value1, value2, "goodsSales");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsSalesNotBetween(Integer value1, Integer value2) {
+            addCriterion("goods_sales not between", value1, value2, "goodsSales");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsMoreimgIsNull() {
+            addCriterion("goods_moreImg is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsMoreimgIsNotNull() {
+            addCriterion("goods_moreImg is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsMoreimgEqualTo(String value) {
+            addCriterion("goods_moreImg =", value, "goodsMoreimg");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsMoreimgNotEqualTo(String value) {
+            addCriterion("goods_moreImg <>", value, "goodsMoreimg");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsMoreimgGreaterThan(String value) {
+            addCriterion("goods_moreImg >", value, "goodsMoreimg");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsMoreimgGreaterThanOrEqualTo(String value) {
+            addCriterion("goods_moreImg >=", value, "goodsMoreimg");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsMoreimgLessThan(String value) {
+            addCriterion("goods_moreImg <", value, "goodsMoreimg");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsMoreimgLessThanOrEqualTo(String value) {
+            addCriterion("goods_moreImg <=", value, "goodsMoreimg");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsMoreimgLike(String value) {
+            addCriterion("goods_moreImg like", value, "goodsMoreimg");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsMoreimgNotLike(String value) {
+            addCriterion("goods_moreImg not like", value, "goodsMoreimg");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsMoreimgIn(List<String> values) {
+            addCriterion("goods_moreImg in", values, "goodsMoreimg");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsMoreimgNotIn(List<String> values) {
+            addCriterion("goods_moreImg not in", values, "goodsMoreimg");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsMoreimgBetween(String value1, String value2) {
+            addCriterion("goods_moreImg between", value1, value2, "goodsMoreimg");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsMoreimgNotBetween(String value1, String value2) {
+            addCriterion("goods_moreImg not between", value1, value2, "goodsMoreimg");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnSaleIsNull() {
+            addCriterion("is_on_sale is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnSaleIsNotNull() {
+            addCriterion("is_on_sale is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnSaleEqualTo(Integer value) {
+            addCriterion("is_on_sale =", value, "isOnSale");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnSaleNotEqualTo(Integer value) {
+            addCriterion("is_on_sale <>", value, "isOnSale");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnSaleGreaterThan(Integer value) {
+            addCriterion("is_on_sale >", value, "isOnSale");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnSaleGreaterThanOrEqualTo(Integer value) {
+            addCriterion("is_on_sale >=", value, "isOnSale");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnSaleLessThan(Integer value) {
+            addCriterion("is_on_sale <", value, "isOnSale");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnSaleLessThanOrEqualTo(Integer value) {
+            addCriterion("is_on_sale <=", value, "isOnSale");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnSaleIn(List<Integer> values) {
+            addCriterion("is_on_sale in", values, "isOnSale");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnSaleNotIn(List<Integer> values) {
+            addCriterion("is_on_sale not in", values, "isOnSale");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnSaleBetween(Integer value1, Integer value2) {
+            addCriterion("is_on_sale between", value1, value2, "isOnSale");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnSaleNotBetween(Integer value1, Integer value2) {
+            addCriterion("is_on_sale not between", value1, value2, "isOnSale");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

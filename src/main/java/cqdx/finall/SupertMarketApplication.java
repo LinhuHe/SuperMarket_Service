@@ -16,6 +16,12 @@ public class SupertMarketApplication {
     }
 
 
+    @RequestMapping("/")
+    public String start()
+    {
+        return  "suc";
+    }
+
     @RequestMapping("/hello")
     public String hello()
     {

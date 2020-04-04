@@ -3,7 +3,7 @@ package cqdx.finall.supertmarket.mapper;
 import cqdx.finall.supertmarket.entity.Order;
 import cqdx.finall.supertmarket.entity.OrderExample;
 import java.util.List;
-import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.annotations.Param;
 
 public interface OrderMapper {
     int countByExample(OrderExample example);

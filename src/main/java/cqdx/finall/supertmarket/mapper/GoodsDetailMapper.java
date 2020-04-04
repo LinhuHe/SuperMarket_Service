@@ -3,7 +3,6 @@ package cqdx.finall.supertmarket.mapper;
 import cqdx.finall.supertmarket.entity.GoodsDetail;
 import cqdx.finall.supertmarket.entity.GoodsDetailExample;
 import java.util.List;
-
 import org.apache.ibatis.annotations.Param;
 
 public interface GoodsDetailMapper {
