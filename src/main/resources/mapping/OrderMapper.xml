@@ -10,6 +10,7 @@
     <result column="order_key" property="orderKey" jdbcType="VARCHAR" />
     <result column="order_amount" property="orderAmount" jdbcType="INTEGER" />
     <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+    <result column="order_destination" property="orderDestination" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -71,7 +72,7 @@
   </sql>
   <sql id="Base_Column_List" >
     order_id, order_did, order_uid, order_date, order_price, order_key, order_amount, 
-    order_status
+    order_status, order_destination
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="cqdx.finall.supertmarket.entity.OrderExample" >
     select
@@ -106,10 +107,12 @@
   <insert id="insert" parameterType="cqdx.finall.supertmarket.entity.Order" >
     insert into order (order_id, order_did, order_uid, 
       order_date, order_price, order_key, 
-      order_amount, order_status)
+      order_amount, order_status, order_destination
+      )
     values (#{orderId,jdbcType=INTEGER}, #{orderDid,jdbcType=INTEGER}, #{orderUid,jdbcType=VARCHAR}, 
       #{orderDate,jdbcType=TIMESTAMP}, #{orderPrice,jdbcType=DECIMAL}, #{orderKey,jdbcType=VARCHAR}, 
-      #{orderAmount,jdbcType=INTEGER}, #{orderStatus,jdbcType=INTEGER})
+      #{orderAmount,jdbcType=INTEGER}, #{orderStatus,jdbcType=INTEGER}, #{orderDestination,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="cqdx.finall.supertmarket.entity.Order" >
     insert into order
@@ -138,6 +141,9 @@
       <if test="orderStatus != null" >
         order_status,
       </if>
+      <if test="orderDestination != null" >
+        order_destination,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="orderId != null" >
@@ -163,6 +169,9 @@
       </if>
       <if test="orderStatus != null" >
         #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderDestination != null" >
+        #{orderDestination,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -199,6 +208,9 @@
       <if test="record.orderStatus != null" >
         order_status = #{record.orderStatus,jdbcType=INTEGER},
       </if>
+      <if test="record.orderDestination != null" >
+        order_destination = #{record.orderDestination,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -213,7 +225,8 @@
       order_price = #{record.orderPrice,jdbcType=DECIMAL},
       order_key = #{record.orderKey,jdbcType=VARCHAR},
       order_amount = #{record.orderAmount,jdbcType=INTEGER},
-      order_status = #{record.orderStatus,jdbcType=INTEGER}
+      order_status = #{record.orderStatus,jdbcType=INTEGER},
+      order_destination = #{record.orderDestination,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -242,6 +255,9 @@
       <if test="orderStatus != null" >
         order_status = #{orderStatus,jdbcType=INTEGER},
       </if>
+      <if test="orderDestination != null" >
+        order_destination = #{orderDestination,jdbcType=VARCHAR},
+      </if>
     </set>
     where order_id = #{orderId,jdbcType=INTEGER}
   </update>
@@ -253,7 +269,8 @@
       order_price = #{orderPrice,jdbcType=DECIMAL},
       order_key = #{orderKey,jdbcType=VARCHAR},
       order_amount = #{orderAmount,jdbcType=INTEGER},
-      order_status = #{orderStatus,jdbcType=INTEGER}
+      order_status = #{orderStatus,jdbcType=INTEGER},
+      order_destination = #{orderDestination,jdbcType=VARCHAR}
     where order_id = #{orderId,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -3,8 +3,11 @@ package cqdx.finall.supertmarket.mapper;
 import cqdx.finall.supertmarket.entity.GoodsRough;
 import cqdx.finall.supertmarket.entity.GoodsRoughExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface GoodsRoughMapper {
     int countByExample(GoodsRoughExample example);
 
@@ -27,4 +30,7 @@ public interface GoodsRoughMapper {
     int updateByPrimaryKeySelective(GoodsRough record);
 
     int updateByPrimaryKey(GoodsRough record);
+
+    List<GoodsRough> selectByGoodsDate(); //按照上市时间且在售排序
+
 }

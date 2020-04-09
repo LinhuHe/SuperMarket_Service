@@ -240,4 +240,10 @@
       goods_price = #{goodsPrice,jdbcType=DECIMAL}
     where goods_did = #{goodsDid,jdbcType=INTEGER}
   </update>
+
+  <select id="getPriceRangeByRid" parameterType="INTEGER" resultType="java.math.BigDecimal">
+    select goods_price from goods_detail where goods_rid = #{rid,jdbcType=INTEGER}
+  </select>
+
+
 </mapper>

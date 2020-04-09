@@ -2,9 +2,14 @@ package cqdx.finall.supertmarket.mapper;
 
 import cqdx.finall.supertmarket.entity.GoodsDetail;
 import cqdx.finall.supertmarket.entity.GoodsDetailExample;
+
+import java.math.BigDecimal;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface GoodsDetailMapper {
     int countByExample(GoodsDetailExample example);
 
@@ -27,4 +32,6 @@ public interface GoodsDetailMapper {
     int updateByPrimaryKeySelective(GoodsDetail record);
 
     int updateByPrimaryKey(GoodsDetail record);
+
+    List<BigDecimal> getPriceRangeByRid(int rid);
 }

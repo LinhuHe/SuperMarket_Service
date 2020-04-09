@@ -20,6 +20,8 @@ public class Order {
 
     private Integer orderStatus;
 
+    private String orderDestination;
+
     public Integer getOrderId() {
         return orderId;
     }
@@ -82,5 +84,13 @@ public class Order {
 
     public void setOrderStatus(Integer orderStatus) {
         this.orderStatus = orderStatus;
+    }
+
+    public String getOrderDestination() {
+        return orderDestination;
+    }
+
+    public void setOrderDestination(String orderDestination) {
+        this.orderDestination = orderDestination;
     }
 }

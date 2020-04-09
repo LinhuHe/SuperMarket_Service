@@ -605,6 +605,76 @@ public class OrderExample {
             addCriterion("order_status not between", value1, value2, "orderStatus");
             return (Criteria) this;
         }
+
+        public Criteria andOrderDestinationIsNull() {
+            addCriterion("order_destination is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderDestinationIsNotNull() {
+            addCriterion("order_destination is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderDestinationEqualTo(String value) {
+            addCriterion("order_destination =", value, "orderDestination");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderDestinationNotEqualTo(String value) {
+            addCriterion("order_destination <>", value, "orderDestination");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderDestinationGreaterThan(String value) {
+            addCriterion("order_destination >", value, "orderDestination");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderDestinationGreaterThanOrEqualTo(String value) {
+            addCriterion("order_destination >=", value, "orderDestination");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderDestinationLessThan(String value) {
+            addCriterion("order_destination <", value, "orderDestination");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderDestinationLessThanOrEqualTo(String value) {
+            addCriterion("order_destination <=", value, "orderDestination");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderDestinationLike(String value) {
+            addCriterion("order_destination like", value, "orderDestination");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderDestinationNotLike(String value) {
+            addCriterion("order_destination not like", value, "orderDestination");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderDestinationIn(List<String> values) {
+            addCriterion("order_destination in", values, "orderDestination");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderDestinationNotIn(List<String> values) {
+            addCriterion("order_destination not in", values, "orderDestination");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderDestinationBetween(String value1, String value2) {
+            addCriterion("order_destination between", value1, value2, "orderDestination");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderDestinationNotBetween(String value1, String value2) {
+            addCriterion("order_destination not between", value1, value2, "orderDestination");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

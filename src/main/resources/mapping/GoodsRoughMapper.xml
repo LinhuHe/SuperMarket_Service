@@ -288,4 +288,9 @@
       is_on_sale = #{isOnSale,jdbcType=INTEGER}
     where goods_rid = #{goodsRid,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByGoodsDate" resultMap="BaseResultMap" >
+    select * from goods_rough where is_on_sale = 1 order by goods_date DESC
+  </select>
+
 </mapper>
