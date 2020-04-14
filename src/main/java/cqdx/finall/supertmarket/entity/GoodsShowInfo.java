@@ -45,6 +45,7 @@ public class GoodsShowInfo {
         this.goodsSales = gr.getGoodsSales();
         this.goodsMoreimg = gr.getGoodsMoreimg();
         this.goodsName = gr.getGoodsName();
+        this.isOnSale = gr.getIsOnSale();
 
         this.priceL = priceL;
         this.priceH = priceH;

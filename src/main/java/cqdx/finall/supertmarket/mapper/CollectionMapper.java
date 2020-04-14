@@ -3,8 +3,11 @@ package cqdx.finall.supertmarket.mapper;
 import cqdx.finall.supertmarket.entity.CollectionExample;
 import cqdx.finall.supertmarket.entity.CollectionKey;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface CollectionMapper {
     int countByExample(CollectionExample example);
 
@@ -21,4 +24,6 @@ public interface CollectionMapper {
     int updateByExampleSelective(@Param("record") CollectionKey record, @Param("example") CollectionExample example);
 
     int updateByExample(@Param("record") CollectionKey record, @Param("example") CollectionExample example);
+
+    int isContain(@Param("record") CollectionKey record);
 }

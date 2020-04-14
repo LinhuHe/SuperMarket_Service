@@ -35,7 +35,7 @@ public class GoodsRoughService {
         return res;
     }
 
-    public GoodsShowInfo findGoodShowInfoByRid(int rid)
+    public GoodsShowInfo findGoodShowInfoByRid(int rid) //通过rid返回一个该商品的goodsShowInfo
     {
         GoodsRough gr = goodsRoughMapper.selectByPrimaryKey(rid);
         List<Double> price_list = getPriceRangeByRid(rid);

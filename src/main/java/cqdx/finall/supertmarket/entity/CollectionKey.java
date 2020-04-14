@@ -5,6 +5,12 @@ public class CollectionKey {
 
     private Integer colRid;
 
+
+    public CollectionKey(String colUid, Integer colRid) {
+        this.colUid = colUid;
+        this.colRid = colRid;
+    }
+
     public String getColUid() {
         return colUid;
     }
