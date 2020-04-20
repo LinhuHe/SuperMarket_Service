@@ -34,4 +34,7 @@ public interface GoodsDetailMapper {
     int updateByPrimaryKey(GoodsDetail record);
 
     List<BigDecimal> getPriceRangeByRid(int rid);
+    List<String> getAllColorsByRid(int rid);
+    List<String> getStyleByColor(int rid,String color);
+    List<String> getSizeByColorStyle(int rid,String color,String style);
 }

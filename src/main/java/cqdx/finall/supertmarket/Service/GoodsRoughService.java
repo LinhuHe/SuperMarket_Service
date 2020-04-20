@@ -30,6 +30,7 @@ public class GoodsRoughService {
         for(GoodsRough gr:gr_list)
         {
             List<Double> price_list = getPriceRangeByRid(gr.getGoodsRid());
+            if(price_list!=null && price_list.size()>0)
             res.add(new GoodsShowInfo(gr.getGoodsRid(),gr.getGoodsName(),gr.getGoodsShoper(),gr.getGoodsProtrait(),price_list.get(0),price_list.get(1)));
         }
         return res;
@@ -46,10 +47,19 @@ public class GoodsRoughService {
     public List<Double> getPriceRangeByRid(int rid)
     {
         List<BigDecimal> al = goodsDetailMapper.getPriceRangeByRid(rid);
+        if(al.size()<=0) return null;
+
         Collections.sort(al);
         List<Double> priceRange = new ArrayList<>();
-        priceRange.add(al.get(0).doubleValue());
-        priceRange.add(al.get(al.size()-1).doubleValue());
+        if(al.size()==1)
+        {
+            priceRange.add(al.get(0).doubleValue());
+            priceRange.add(al.get(0).doubleValue());
+        }
+        else {
+            priceRange.add(al.get(0).doubleValue());
+            priceRange.add(al.get(al.size() - 1).doubleValue());
+        }
         return priceRange;
     }
 
