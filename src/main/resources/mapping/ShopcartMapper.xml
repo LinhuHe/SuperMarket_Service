@@ -5,6 +5,21 @@
     <id column="spc_uid" property="spcUid" jdbcType="VARCHAR" />
     <id column="spc_did" property="spcDid" jdbcType="INTEGER" />
   </resultMap>
+  <resultMap id="ShopCartGoodsInfoMap" type="cqdx.finall.supertmarket.entity.ShopCartGoodsInfo">
+    <id column="is_on_sale" property="isOnSale" jdbcType="INTEGER" />
+    <id column="goods_did" property="goodsDid" jdbcType="INTEGER" />
+    <id column="goods_stock" property="goodsStock" jdbcType="INTEGER" />
+    <id column="goods_rid" property="goodsRid" jdbcType="INTEGER" />
+    <id column="goods_style" property="goodsStyle" jdbcType="VARCHAR" />
+    <id column="goods_color" property="goodsColor" jdbcType="VARCHAR" />
+    <id column="goods_size" property="goodsSize" jdbcType="VARCHAR" />
+    <id column="goods_price" property="goodsPrice" jdbcType="DECIMAL" />
+    <id column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <id column="goods_shoper" property="goodsShoper" jdbcType="VARCHAR" />
+    <id column="goods_protrait" property="goodsProtrait" jdbcType="VARCHAR" />
+    <id column="goods_collection" property="goodsCollection" jdbcType="INTEGER" />
+    <id column="goods_sales" property="goodsSales" jdbcType="INTEGER" />
+  </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -142,4 +157,13 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+
+  <select id="getShopCartGoodsInfoByUid" parameterType="java.lang.String" resultMap="ShopCartGoodsInfoMap">
+    select *
+    from
+    goods_detail gd inner join shopcart spc on gd.goods_did = spc.spc_did
+    inner join goods_rough gr on gd.goods_rid = gr.goods_rid
+    where spc.spc_uid = #{uid,jdbcType=VARCHAR}
+  </select>
+
 </mapper>
