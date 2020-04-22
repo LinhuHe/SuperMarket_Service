@@ -293,4 +293,16 @@
     select * from goods_rough where is_on_sale = 1 order by goods_date DESC
   </select>
 
+  <update id="addCollectionNums" parameterType="java.lang.Integer">
+    update goods_rough
+    set goods_collection = goods_collection+1
+    where goods_rid = #{rid,jdbcType=INTEGER}
+  </update>
+
+  <update id="desCollectionNums" parameterType="java.lang.Integer">
+    update goods_rough
+    set goods_collection = goods_collection-1
+    where goods_rid = #{rid,jdbcType=INTEGER}
+  </update>
+
 </mapper>

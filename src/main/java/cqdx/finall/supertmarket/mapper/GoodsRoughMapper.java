@@ -32,5 +32,6 @@ public interface GoodsRoughMapper {
     int updateByPrimaryKey(GoodsRough record);
 
     List<GoodsRough> selectByGoodsDate(); //按照上市时间且在售排序
-
+    void addCollectionNums(int rid);
+    void desCollectionNums(int rid);
 }

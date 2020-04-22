@@ -64,4 +64,13 @@ public class GoodsDetailService {
         System.out.println(getsizes);
         return sizes;
     }
+
+    public int getDidByRidCSS(int rid,String color ,String style,String size){
+        String tempStyle = style;
+        if(style.equals("无")) tempStyle = null;
+
+        if(rid<0 || color==null || size==null) return -1;
+
+        return goodsDetailMapper.getDidByRidCSS(rid,color,tempStyle,size);
+    }
 }

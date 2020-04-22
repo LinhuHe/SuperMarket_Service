@@ -268,4 +268,12 @@
     </if>
   </select>
 
+  <select id="getDidByRidCSS" resultType="INTEGER">
+    select goods_did from goods_detail where goods_rid = #{rid,jdbcType = INTEGER} AND goods_color = #{color,jdbcType=VARCHAR}
+    and goods_size = #{size,jdbcType=VARCHAR}
+
+    <if test="style!=null">
+      and goods_style = #{style,jdbcType=VARCHAR}
+    </if>
+  </select>
 </mapper>

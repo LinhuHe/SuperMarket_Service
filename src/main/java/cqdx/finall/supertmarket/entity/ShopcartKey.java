@@ -20,4 +20,12 @@ public class ShopcartKey {
     public void setSpcDid(Integer spcDid) {
         this.spcDid = spcDid;
     }
+
+    public ShopcartKey() {
+}
+
+    public ShopcartKey(String spcUid, Integer spcDid) {
+        this.spcUid = spcUid;
+        this.spcDid = spcDid;
+    }
 }

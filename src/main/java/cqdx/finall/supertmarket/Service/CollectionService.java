@@ -49,11 +49,13 @@ public class CollectionService {
 
     public int addCollectionByKey(String uid,int rid)
     {
+        goodsRoughMapper.addCollectionNums(rid);  //收藏加一
         return collectionMapper.insert(new CollectionKey(uid,rid));
     }
 
     public int deleteCollectionByKey(String uid,int rid)
     {
+        goodsRoughMapper.desCollectionNums(rid);  //收藏数减一
         return collectionMapper.deleteByPrimaryKey(new CollectionKey(uid,rid));
     }
 

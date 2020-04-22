@@ -25,17 +25,24 @@ public class GoodsDetailController {
     }
 
     @RequestMapping("/GoodsDetailController/getStyleByColor/")
-    public List<String> getStyleByColor(@RequestParam("rid") int rid,@RequestParam("color") String color)
+    public List<String> getStyleByColor(@RequestParam("rid") int rid,@RequestParam("color") String color) //根据color返回style
     {
         System.out.println("GoodsDetailController/getStyleByColor/: rid = " + rid + "  color = " + color);
         return goodsDetailService.getStyleByColor(rid,color);
     }
 
     @RequestMapping("/GoodsDetailController/getSizeByColorStyle")
-    public List<String> getSizeByColorStyle(@RequestParam("rid") int rid,@RequestParam("color") String color, @RequestParam("style") String style)
+    public List<String> getSizeByColorStyle(@RequestParam("rid") int rid,@RequestParam("color") String color, @RequestParam("style") String style) //根据solor/style返回size
     {
         System.out.println("GoodsDetailController/getSizeByColorStyle: rid = " + rid +" color = " + color + "   sytle = "+style);
         return goodsDetailService.getSizeByColorStyle(rid,color,style);
     }
 
+    //根据rid color style size 唯一确定 did 用于前端加入购物车操作
+    @RequestMapping("/GoodsDetailController/getDidByRidCSS")
+    public int getDidByRidCSS(@RequestParam("rid") int rid, @RequestParam("color") String color,@RequestParam("style") String style, @RequestParam("size") String size)
+    {
+        System.out.println("GoodsDetailController/getDidByRidCSS: rid = " + rid +" color = " + color + "   sytle = "+style + "   size = "+size);
+        return goodsDetailService.getDidByRidCSS(rid,color,style,size);
+    }
 }

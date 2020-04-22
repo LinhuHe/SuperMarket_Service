@@ -1,6 +1,7 @@
 package cqdx.finall.supertmarket.Service;
 
 import cqdx.finall.supertmarket.entity.ShopCartGoodsInfo;
+import cqdx.finall.supertmarket.entity.ShopcartKey;
 import cqdx.finall.supertmarket.mapper.ShopcartMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.origin.SystemEnvironmentOrigin;
@@ -36,19 +37,29 @@ public class ShopCartService {
                 System.out.println("temp : "+temp);
                 res.add(new ArrayList<ShopCartGoodsInfo>(temp));
                 temp.clear();
+                temp.add(getShopcartGoods.get(i));
                 continue;
             }
 
             if(i==getShopcartGoods.size()-1)
             {
-                temp.add(getShopcartGoods.get(i));
                 System.out.println("temp : "+temp);
                 res.add(new ArrayList<ShopCartGoodsInfo>(temp));
                 temp.clear();
             }
         }
-
-
         return res;
+    }
+
+    public int removeFromShopcart(String uid,int did)
+    {
+        if(uid!=null) return shopcartMapper.deleteByPrimaryKey(new ShopcartKey(uid,did));
+        else return 0;
+    }
+
+    public int addIntoShopcart(String uid,int did)
+    {
+        if(uid!=null) return shopcartMapper.insert(new ShopcartKey(uid,did));
+        else return 0;
     }
 }
