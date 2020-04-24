@@ -38,7 +38,7 @@ public class GoodsDetailController {
         return goodsDetailService.getSizeByColorStyle(rid,color,style);
     }
 
-    //根据rid color style size 唯一确定 did 用于前端加入购物车操作
+    //根据rid color style size 唯一确定 did
     @RequestMapping("/GoodsDetailController/getDidByRidCSS")
     public int getDidByRidCSS(@RequestParam("rid") int rid, @RequestParam("color") String color,@RequestParam("style") String style, @RequestParam("size") String size)
     {

@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class Order {
-    private Integer orderId;
+    private Integer orderId = 0;
 
     private Integer orderDid;
 
@@ -21,6 +21,21 @@ public class Order {
     private Integer orderStatus;
 
     private String orderDestination;
+
+    public Order(){}
+
+    public Order(Integer orderDid, String orderUid, BigDecimal orderPrice, String orderKey,String orderDestination) {
+        this.orderDid = orderDid;
+        this.orderUid = orderUid;
+        this.orderPrice = orderPrice;
+        this.orderKey = orderKey;
+        this.orderDestination = orderDestination;
+
+        this.orderId = 0;
+        this.orderAmount = 1;
+        this.orderStatus = 0;
+        this.orderDate = new Date();
+    }
 
     public Integer getOrderId() {
         return orderId;

@@ -1,6 +1,7 @@
 package cqdx.finall.supertmarket.Service;
 
 import cqdx.finall.supertmarket.entity.GoodsDetail;
+import cqdx.finall.supertmarket.entity.OrderGoodsInfo;
 import cqdx.finall.supertmarket.mapper.GoodsDetailMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -73,4 +74,6 @@ public class GoodsDetailService {
 
         return goodsDetailMapper.getDidByRidCSS(rid,color,tempStyle,size);
     }
+
+
 }

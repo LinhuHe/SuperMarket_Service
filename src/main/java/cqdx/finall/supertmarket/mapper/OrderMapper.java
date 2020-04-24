@@ -3,8 +3,13 @@ package cqdx.finall.supertmarket.mapper;
 import cqdx.finall.supertmarket.entity.Order;
 import cqdx.finall.supertmarket.entity.OrderExample;
 import java.util.List;
+
+import cqdx.finall.supertmarket.entity.OrderGoodsInfo;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+
+@Mapper
 public interface OrderMapper {
     int countByExample(OrderExample example);
 
@@ -27,4 +32,7 @@ public interface OrderMapper {
     int updateByPrimaryKeySelective(Order record);
 
     int updateByPrimaryKey(Order record);
+
+    OrderGoodsInfo getOrderGoodsInfoByDid(int did);
+    int checkGoodStatus(int did);
 }

@@ -6,6 +6,7 @@ import cqdx.finall.supertmarket.entity.GoodsDetailExample;
 import java.math.BigDecimal;
 import java.util.List;
 
+import cqdx.finall.supertmarket.entity.OrderGoodsInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -38,4 +39,5 @@ public interface GoodsDetailMapper {
     List<String> getStyleByColor(int rid,String color);
     List<String> getSizeByColorStyle(int rid,String color,String style);
     int getDidByRidCSS(int rid,String color ,String style,String size);
+
 }

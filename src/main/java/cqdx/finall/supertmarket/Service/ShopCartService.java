@@ -15,35 +15,40 @@ public class ShopCartService {
     @Autowired
     private ShopcartMapper shopcartMapper;
 
-    public ArrayList<ArrayList<ShopCartGoodsInfo>> getShopCartGoodsInfo(String uid)
+    public ArrayList<ArrayList<ShopCartGoodsInfo>> getShopCartGoodsInfo(String uid) //这里获取到所有购物车中的商品，[{}{}{}{}] 格式
     {
         if(uid.equals(null)) return null;
-        List<ShopCartGoodsInfo> getShopcartGoods =  shopcartMapper.getShopCartGoodsInfoByUid(uid);  //这里获取到所有购物车中的商品，[{}{}{}{}] 格式
+        List<ShopCartGoodsInfo> getShopcartGoods =  shopcartMapper.getShopCartGoodsInfoByUid(uid);
         Collections.sort(getShopcartGoods, new Comparator<ShopCartGoodsInfo>() {
             @Override
             public int compare(ShopCartGoodsInfo o1, ShopCartGoodsInfo o2) {
                 return o1.getGoodsShoper().compareTo(o2.getGoodsShoper());
             }
         });
-        System.out.println("ShopCartService/getShopCartGoodsInfo 数组排序后"+getShopcartGoods);
+        //System.out.println("ShopCartService/getShopCartGoodsInfo 数组排序后"+getShopcartGoods);
         ArrayList<ArrayList<ShopCartGoodsInfo>> res = new ArrayList<>();
         ArrayList<ShopCartGoodsInfo> temp = new ArrayList<>();
+
+        if(getShopcartGoods.size()==1){ //只有一个
+            res.add(new ArrayList<ShopCartGoodsInfo>(getShopcartGoods));
+            return res;
+        }
+
         temp.add(getShopcartGoods.get(0));
 
         for(int i=1;i<getShopcartGoods.size();i++)
         {
             if(getShopcartGoods.get(i).getGoodsShoper().equals(getShopcartGoods.get(i-1).getGoodsShoper())) temp.add(getShopcartGoods.get(i));
             else{
-                System.out.println("temp : "+temp);
+                //System.out.println("temp : "+temp);
                 res.add(new ArrayList<ShopCartGoodsInfo>(temp));
                 temp.clear();
                 temp.add(getShopcartGoods.get(i));
-                continue;
             }
 
             if(i==getShopcartGoods.size()-1)
             {
-                System.out.println("temp : "+temp);
+                //System.out.println("temp : "+temp);
                 res.add(new ArrayList<ShopCartGoodsInfo>(temp));
                 temp.clear();
             }
