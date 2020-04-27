@@ -30,4 +30,5 @@ public interface ShopcartMapper {
     List<ShopCartGoodsInfo> getShopCartGoodsInfoByUid(String uid);
     List<GoodsDetail> getGoodsDetailByUid(String uid);
     List<GoodsRough> getGoodsRoughByUid(String uid);
+    int countByUid(String uid);
 }

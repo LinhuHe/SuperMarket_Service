@@ -146,4 +146,8 @@
   <select id="isContain" parameterType="cqdx.finall.supertmarket.entity.CollectionKey" resultType="java.lang.Integer">
     select count(*) from collection where col_uid = #{record.colUid} and col_rid=#{record.colRid}
   </select>
+
+  <select id="countByUid" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select count(*) from collection where col_uid = #{uid,jdbcType = VARCHAR}
+  </select>
 </mapper>

@@ -27,6 +27,21 @@
     <id column="goods_collection" property="goodsCollection" jdbcType="INTEGER" />
     <id column="goods_sales" property="goodsSales" jdbcType="INTEGER" />
   </resultMap>
+  <resultMap id="OrderShowInfoMap" type="cqdx.finall.supertmarket.entity.OrderShowInfo">
+    <id column="order_id" property="orderId" jdbcType="INTEGER" />
+    <id column="order_did" property="orderDid" jdbcType="INTEGER" />
+    <id column="goods_rid" property="orderRid" jdbcType="INTEGER" />
+    <id column="order_uid" property="orderUid" jdbcType="VARCHAR" />
+    <id column="order_date" property="orderDate" jdbcType="TIMESTAMP" />
+    <id column="order_price" property="orderPrice" jdbcType="DECIMAL" />
+    <id column="order_key" property="orderKey" jdbcType="VARCHAR" />
+    <id column="order_amount" property="orderAmount" jdbcType="INTEGER" />
+    <id column="order_status" property="orderStatus" jdbcType="INTEGER" />
+    <id column="order_destination" property="orderDestination" jdbcType="VARCHAR" />
+    <id column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <id column="goods_shoper" property="goodsShoper" jdbcType="VARCHAR" />
+    <id column="goods_protrait" property="goodsProtrait" jdbcType="VARCHAR" />
+  </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -295,4 +310,38 @@
     goods_rough gr inner join goods_detail gd on gr.goods_rid = gd.goods_rid
     where gd.goods_did = #{did,jdbcType=INTEGER} and gd.goods_stock>0 and gr.is_on_sale = 1
   </select>
+
+  <select id="getOrderByUid" parameterType="java.lang.String" resultMap = "OrderShowInfoMap">
+    select * from
+    `order` od inner join goods_detail gd on od.order_did = gd.goods_did
+    inner join goods_rough gr on gd.goods_rid = gr.goods_rid
+    where od.order_uid = #{uid,jdbcType=VARCHAR} order by od.order_date
+  </select>
+
+  <select id="getWaitOrder" parameterType="java.lang.String" resultMap = "OrderShowInfoMap">
+    select * from
+    `order` od inner join goods_detail gd on od.order_did = gd.goods_did
+    inner join goods_rough gr on gd.goods_rid = gr.goods_rid
+    where od.order_uid = #{uid,jdbcType=VARCHAR} and od.order_status=0 order by od.order_date
+  </select>
+  <select id="getSendOrder" parameterType="java.lang.String" resultMap = "OrderShowInfoMap">
+    select * from
+    `order` od inner join goods_detail gd on od.order_did = gd.goods_did
+    inner join goods_rough gr on gd.goods_rid = gr.goods_rid
+    where od.order_uid = #{uid,jdbcType=VARCHAR} and od.order_status=1 order by od.order_date
+  </select>
+  <select id="getReceivedOrder" parameterType="java.lang.String" resultMap = "OrderShowInfoMap">
+    select * from
+    `order` od inner join goods_detail gd on od.order_did = gd.goods_did
+    inner join goods_rough gr on gd.goods_rid = gr.goods_rid
+    where od.order_uid = #{uid,jdbcType=VARCHAR} and od.order_status=2 order by od.order_date
+  </select>
+  <select id="getBackOrder" parameterType="java.lang.String" resultMap = "OrderShowInfoMap">
+    select * from
+    `order` od inner join goods_detail gd on od.order_did = gd.goods_did
+    inner join goods_rough gr on gd.goods_rid = gr.goods_rid
+    where od.order_uid = #{uid,jdbcType=VARCHAR} and od.order_status=3 order by od.order_date
+  </select>
+
+
 </mapper>

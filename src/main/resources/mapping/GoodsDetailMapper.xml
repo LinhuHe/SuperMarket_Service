@@ -276,4 +276,14 @@
       and goods_style = #{style,jdbcType=VARCHAR}
     </if>
   </select>
+
+  <select id="getRidByDid" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select distinct goods_rid from goods_detail where goods_did = #{did,jdbcType=INTEGER}
+  </select>
+
+  <update id="desStockNums" parameterType="java.lang.Integer">
+    update goods_detail
+    set goods_stock = goods_stock-1
+    where goods_did = #{did,jdbcType=INTEGER}
+  </update>
 </mapper>

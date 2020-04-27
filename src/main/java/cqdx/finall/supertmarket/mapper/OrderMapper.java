@@ -2,9 +2,12 @@ package cqdx.finall.supertmarket.mapper;
 
 import cqdx.finall.supertmarket.entity.Order;
 import cqdx.finall.supertmarket.entity.OrderExample;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import cqdx.finall.supertmarket.entity.OrderGoodsInfo;
+import cqdx.finall.supertmarket.entity.OrderShowInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -35,4 +38,11 @@ public interface OrderMapper {
 
     OrderGoodsInfo getOrderGoodsInfoByDid(int did);
     int checkGoodStatus(int did);
+    ArrayList<OrderShowInfo> getOrderByUid(String uid);
+
+    ArrayList<OrderShowInfo> getWaitOrder(String uid);
+    ArrayList<OrderShowInfo> getSendOrder(String uid);
+    ArrayList<OrderShowInfo> getReceivedOrder(String uid);
+    ArrayList<OrderShowInfo> getBackOrder(String uid);
+
 }

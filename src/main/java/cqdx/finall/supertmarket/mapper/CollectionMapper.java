@@ -25,5 +25,6 @@ public interface CollectionMapper {
 
     int updateByExample(@Param("record") CollectionKey record, @Param("example") CollectionExample example);
 
-    int isContain(@Param("record") CollectionKey record);
+    int isContain(@Param("record") CollectionKey record);  //查看是否存在这个记录
+    int countByUid(String uid);
 }

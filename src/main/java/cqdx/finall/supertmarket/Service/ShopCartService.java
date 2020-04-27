@@ -67,4 +67,9 @@ public class ShopCartService {
         if(uid!=null) return shopcartMapper.insert(new ShopcartKey(uid,did));
         else return 0;
     }
+
+    public int coutMyCollectionNums(String uid)
+    {
+        return shopcartMapper.countByUid(uid);
+    }
 }

@@ -305,4 +305,18 @@
     where goods_rid = #{rid,jdbcType=INTEGER}
   </update>
 
+  <update id="addOrderNums" parameterType="java.lang.Integer">
+    update goods_rough
+    set goods_sales = goods_sales+1
+    where goods_rid = #{rid,jdbcType=INTEGER}
+  </update>
+
+  <update id="desOrderNums" parameterType="java.lang.Integer">
+    update goods_rough
+    set goods_sales = goods_sales-1
+    where goods_rid = #{rid,jdbcType=INTEGER}
+  </update>
+
+
+
 </mapper>

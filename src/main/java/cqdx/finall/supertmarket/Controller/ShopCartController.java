@@ -38,4 +38,11 @@ public class ShopCartController {
         System.out.println("ShopCartController/addIntoShopcart/uid = "+uid+"  did="+did);
         return shopCartService.addIntoShopcart(uid,did);
     }
+
+    @RequestMapping("/ShopCartController/countMyShopcartNums/{uid}")
+    public int countMyShopcartNums(@PathVariable("uid") String uid)
+    {
+        System.out.println("ShopCartController/countMyShopcartNums uid: "+uid);
+        return shopCartService.coutMyCollectionNums(uid);
+    }
 }

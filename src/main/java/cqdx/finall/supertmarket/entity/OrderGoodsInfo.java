@@ -2,6 +2,7 @@ package cqdx.finall.supertmarket.entity;
 
 import java.math.BigDecimal;
 
+//准备购买时
 public class OrderGoodsInfo {
     private Integer goodsDid;
 

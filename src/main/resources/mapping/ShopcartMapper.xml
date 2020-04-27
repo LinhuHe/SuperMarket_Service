@@ -166,4 +166,8 @@
     where spc.spc_uid = #{uid,jdbcType=VARCHAR}
   </select>
 
+  <select id="countByUid" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select count(*) from shopcart where spc_uid = #{uid,jdbcType = VARCHAR}
+  </select>
+
 </mapper>

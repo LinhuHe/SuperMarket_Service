@@ -63,4 +63,9 @@ public class CollectionService {
     {
         return collectionMapper.isContain(new CollectionKey(uid,rid));
     }
+
+    public int coutMyCollectionNums(String uid)
+    {
+        return collectionMapper.countByUid(uid);
+    }
 }

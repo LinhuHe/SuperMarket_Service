@@ -41,10 +41,17 @@ public class CollectionController {
     }
 
     @RequestMapping("/CollectionController/isContain")
-    public int isContain(@RequestParam("uid") String uid,@RequestParam("rid") int rid)
+    public int isContain(@RequestParam("uid") String uid,@RequestParam("rid") int rid)  //用于判断用户是否收藏
     {
         System.out.println("CollectionController/isContain get param: "+uid+"  "+rid);
         if(uid.equals(null) || rid<=0) return 0;
         return collectionService.isContain(uid,rid);
+    }
+
+    @RequestMapping("/CollectionController/countMyCollectionNums/{uid}")
+    public int countMyCollectionNums(@PathVariable("uid") String uid)
+    {
+        System.out.println("CollectionController/countMyCollectionNums uid: "+uid);
+        return collectionService.coutMyCollectionNums(uid);
     }
 }
