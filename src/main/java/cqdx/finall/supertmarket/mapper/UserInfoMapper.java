@@ -3,7 +3,11 @@ package cqdx.finall.supertmarket.mapper;
 import cqdx.finall.supertmarket.entity.UserInfo;
 import cqdx.finall.supertmarket.entity.UserInfoExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+@Mapper
 
 public interface UserInfoMapper {
     int countByExample(UserInfoExample example);
@@ -27,4 +31,6 @@ public interface UserInfoMapper {
     int updateByPrimaryKeySelective(UserInfo record);
 
     int updateByPrimaryKey(UserInfo record);
+
+    int isContain(String uid); //检查是否存在
 }

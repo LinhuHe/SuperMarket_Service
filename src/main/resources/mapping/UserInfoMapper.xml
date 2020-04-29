@@ -225,4 +225,8 @@
       user_portrait = #{userPortrait,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=VARCHAR}
   </update>
+
+  <select id="isContain" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select  count(*) from user_info where binary user_id = #{uid,jdbcType = VARCHAR}
+  </select>
 </mapper>

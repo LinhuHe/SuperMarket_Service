@@ -13,6 +13,17 @@ public class UserInfo {
 
     private String userPortrait;
 
+    public UserInfo(){}
+
+    public UserInfo(String userId, String userNickname, Integer userSex, String userIpaddr, String userPortrait) {
+        this.userId = userId;
+        this.userNickname = userNickname;
+        this.userSex = userSex;
+        this.isShoper = 0;
+        this.userIpaddr = userIpaddr;
+        this.userPortrait = userPortrait;
+    }
+
     public String getUserId() {
         return userId;
     }

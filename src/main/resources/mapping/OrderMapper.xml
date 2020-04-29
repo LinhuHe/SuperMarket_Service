@@ -315,7 +315,7 @@
     select * from
     `order` od inner join goods_detail gd on od.order_did = gd.goods_did
     inner join goods_rough gr on gd.goods_rid = gr.goods_rid
-    where od.order_uid = #{uid,jdbcType=VARCHAR} order by od.order_date
+    where od.order_uid = #{uid,jdbcType=VARCHAR} order by od.order_date asc
   </select>
 
   <select id="getWaitOrder" parameterType="java.lang.String" resultMap = "OrderShowInfoMap">

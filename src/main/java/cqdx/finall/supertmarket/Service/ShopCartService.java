@@ -19,6 +19,11 @@ public class ShopCartService {
     {
         if(uid.equals(null)) return null;
         List<ShopCartGoodsInfo> getShopcartGoods =  shopcartMapper.getShopCartGoodsInfoByUid(uid);
+        ArrayList<ArrayList<ShopCartGoodsInfo>> res = new ArrayList<>();
+        ArrayList<ShopCartGoodsInfo> temp = new ArrayList<>();
+
+        if(getShopcartGoods.size()<=0) return res; //没值 返回空
+
         Collections.sort(getShopcartGoods, new Comparator<ShopCartGoodsInfo>() {
             @Override
             public int compare(ShopCartGoodsInfo o1, ShopCartGoodsInfo o2) {
@@ -26,8 +31,7 @@ public class ShopCartService {
             }
         });
         //System.out.println("ShopCartService/getShopCartGoodsInfo 数组排序后"+getShopcartGoods);
-        ArrayList<ArrayList<ShopCartGoodsInfo>> res = new ArrayList<>();
-        ArrayList<ShopCartGoodsInfo> temp = new ArrayList<>();
+
 
         if(getShopcartGoods.size()==1){ //只有一个
             res.add(new ArrayList<ShopCartGoodsInfo>(getShopcartGoods));
