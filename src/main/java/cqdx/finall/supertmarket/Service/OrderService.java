@@ -132,10 +132,12 @@ public class OrderService {
             orderlist.get(0).setDate_str(sf.format(orderlist.get(0).getOrderDate())); //date
             for(int i=1;i<orderlist.size();i++)
             {
+
+
                 orderlist.get(i).setDesInfo(orderlist.get(i).getOrderDestination().split("/"));
                 orderlist.get(i).setDate_str(sf.format(orderlist.get(i).getOrderDate()));
-                if(orderlist.get(i).getOrderKey().equals(orderlist.get(i-1).getOrderKey())&&
-                        (orderlist.get(i).getOrderDate().getTime()-orderlist.get(i).getOrderDate().getTime())<10000) //10s内 key相同
+                if(orderlist.get(i).getOrderKey().equals(orderlist.get(i-1).getOrderKey()) &&
+                        (orderlist.get(i).getOrderDate().getTime()-orderlist.get(i-1).getOrderDate().getTime())<10000) //10s内 key相同
                 {
                     temp.add(orderlist.get(i));
                 }

@@ -229,4 +229,21 @@
   <select id="isContain" parameterType="java.lang.String" resultType="java.lang.Integer">
     select  count(*) from user_info where binary user_id = #{uid,jdbcType = VARCHAR}
   </select>
+
+  <update id="updatePortrait" parameterType="java.lang.String">
+    update user_info
+    set user_portrait = #{portraitURL,jdbcType=VARCHAR}
+    where user_id = #{uid,jdbcType=VARCHAR}
+  </update>
+
+  <select id="ablityNickname" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select  count(*) from user_info where user_nickname = #{nickname,jdbcType = VARCHAR}
+  </select>
+
+  <update id="updateNickname" parameterType="java.lang.String">
+    update user_info
+    set user_portrait = #{portraitURL,jdbcType=VARCHAR},
+      user_nickname = #{newNickname,jdbcType=VARCHAR}
+    where user_id = #{uid,jdbcType=VARCHAR}
+  </update>
 </mapper>
