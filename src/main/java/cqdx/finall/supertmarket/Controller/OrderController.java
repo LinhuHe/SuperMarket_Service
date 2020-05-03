@@ -46,4 +46,11 @@ public class OrderController {
         return orderService.getSingleStatusOrder(uid,status);
     }
 
+    @RequestMapping("/OrderController/getMyFinishedOrder/{nickname}")
+    public ArrayList<OrderShowInfo> getMyFinishedOrder(@PathVariable("nickname")  String nickname)
+    {
+        System.out.println("OrderController/getSingleStatusOrder/nickname = "+nickname);
+        return orderService.getMyFinishedOrder(nickname);
+    }
+
 }

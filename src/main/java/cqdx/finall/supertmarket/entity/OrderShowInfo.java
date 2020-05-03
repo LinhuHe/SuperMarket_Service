@@ -36,6 +36,11 @@ public class OrderShowInfo {
 
     private String date_str;
 
+    private String color;
+
+    private String size;
+
+    private String style;
 
 
     public OrderShowInfo(){}
@@ -177,4 +182,29 @@ public class OrderShowInfo {
     public void setDate_str(String date_str) {
         this.date_str = date_str;
     }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public String getStyle() {
+        return style;
+    }
+
+    public void setStyle(String style) {
+        this.style = style;
+    }
+
 }

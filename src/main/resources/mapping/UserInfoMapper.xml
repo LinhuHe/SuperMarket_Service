@@ -246,4 +246,10 @@
       user_nickname = #{newNickname,jdbcType=VARCHAR}
     where user_id = #{uid,jdbcType=VARCHAR}
   </update>
+
+  <update id="updateShoperStatus">
+    update user_info
+    set is_shoper = #{isShoper,jdbcType=INTEGER}
+    where user_id=#{uid,jdbcType=VARCHAR}
+  </update>
 </mapper>

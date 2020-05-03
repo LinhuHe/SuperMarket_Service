@@ -14,6 +14,8 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+// //orderStatus: 0:未发货， 1：待收货（这里确认收货），2：已收货，3：退货中（确认退货），4：已退货
+
 @Service
 public class OrderService {
     @Autowired
@@ -191,21 +193,36 @@ public class OrderService {
         return slist;
     }
 
-    public ArrayList<OrderShowInfo> getWaitOrder(String uid)  //待发
+    public ArrayList<OrderShowInfo> getWaitOrder(String uid)  //用户未发
     {
         return  orderMapper.getWaitOrder(uid);
     }
-    public ArrayList<OrderShowInfo> getSendOrder(String uid) //已发
+    public ArrayList<OrderShowInfo> getSendOrder(String uid) //用户待收
     {
         return orderMapper.getSendOrder(uid);
     }
-    public ArrayList<OrderShowInfo> getReceivedOrder(String uid) //已收
+    public ArrayList<OrderShowInfo> getReceivedOrder(String uid) //用户已收
     {
         return orderMapper.getReceivedOrder(uid);
     }
-    public ArrayList<OrderShowInfo> getBackOrder(String uid) //退货
+    public ArrayList<OrderShowInfo> getBackOrder(String uid) //用户退货
     {
         return orderMapper.getBackOrder(uid);
+    }
+
+    public ArrayList<OrderShowInfo> getMyFinishedOrder(String nickname) //商家已完成的订单
+    {
+        ArrayList<OrderShowInfo> myFinishedOrder = orderMapper.getMyFinishedOrder(nickname);
+        if(myFinishedOrder!=null && myFinishedOrder.size()>0)
+        {
+            SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            for(int i=0;i<myFinishedOrder.size();i++)
+            {
+                myFinishedOrder.get(i).setDesInfo(myFinishedOrder.get(i).getOrderDestination().split("/"));
+                myFinishedOrder.get(i).setDate_str(sf.format(myFinishedOrder.get(i).getOrderDate()));
+            }
+        }
+        return myFinishedOrder;
     }
 
 }

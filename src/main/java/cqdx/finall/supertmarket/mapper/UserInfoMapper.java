@@ -35,5 +35,6 @@ public interface UserInfoMapper {
     int isContain(String uid); //检查是否存在
     int updatePortrait(String uid,String portraitURL);
     int ablityNickname(String nickname); //检测nickname是否存在 不区分大小写
-    int updateNickname(String uid, String newNickname, String portraitURL); //头像也要更新
+    int updateNickname(String uid, String newNickname, String portraitURL); //更新昵称同时 头像也要更新
+    int updateShoperStatus(String uid,int isShoper);
 }

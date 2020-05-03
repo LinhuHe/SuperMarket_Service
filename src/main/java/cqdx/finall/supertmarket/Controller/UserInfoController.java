@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.sound.midi.SysexMessage;
+import java.util.ArrayList;
 
 @RestController
 public class UserInfoController {
@@ -40,5 +41,12 @@ public class UserInfoController {
     {
         System.out.println("UserInfoController/changeNickname uid="+uid+ "  newNickname="+newNickname);
         return userInfoService.changeNickname(newNickname,uid);
+    }
+
+    @RequestMapping("/UserInfoController/beOrNotBeShoper")
+    public int beOrNotBeShoper(@RequestParam("uid") String uid,@RequestParam("isShoper") int isShoper)
+    {
+        System.out.println("UserInfoController/changeNickname uid="+uid+ "  isShoper="+isShoper);
+        return userInfoService.beOrNotBeShoper(uid,isShoper); //返回的是写入成功或失败
     }
 }

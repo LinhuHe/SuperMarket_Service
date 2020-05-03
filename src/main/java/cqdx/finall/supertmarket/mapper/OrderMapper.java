@@ -44,5 +44,5 @@ public interface OrderMapper {
     ArrayList<OrderShowInfo> getSendOrder(String uid);
     ArrayList<OrderShowInfo> getReceivedOrder(String uid);
     ArrayList<OrderShowInfo> getBackOrder(String uid);
-
+    ArrayList<OrderShowInfo> getMyFinishedOrder(String nickname);
 }

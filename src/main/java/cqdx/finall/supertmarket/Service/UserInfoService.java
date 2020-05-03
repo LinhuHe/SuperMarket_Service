@@ -98,7 +98,6 @@ public class UserInfoService {
             }
         }
     }
-
     public static void deleteFile(String dirPath) {
         File file = new File(dirPath);
         if (file.isFile()) {
@@ -114,6 +113,11 @@ public class UserInfoService {
                 file.delete();
             }
         }
+    }
+
+    public int beOrNotBeShoper(String uid,int isShoper)
+    {
+        return userInfoMapper.updateShoperStatus(uid,isShoper);
     }
 
 }
