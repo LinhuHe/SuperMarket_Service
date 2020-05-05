@@ -33,7 +33,7 @@ public class UserInfoController {
     public void changeProtrait(@RequestParam("portrait") MultipartFile portrait,@RequestParam("userName") String userName,@RequestParam("uid") String uid)
     {
         System.out.println("UserInfoController/changeProtrait uid="+uid+ "  userName="+userName+  "  portrait = "+portrait);
-        userInfoService.changeProtrait(portrait,userName,uid);
+        userInfoService.changeProtrait(portrait,uid);
     }
 
     @RequestMapping("/UserInfoController/changeNickname")

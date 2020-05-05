@@ -45,4 +45,11 @@ public class GoodsDetailController {
         System.out.println("GoodsDetailController/getDidByRidCSS: rid = " + rid +" color = " + color + "   sytle = "+style + "   size = "+size);
         return goodsDetailService.getDidByRidCSS(rid,color,style,size);
     }
+
+    @RequestMapping("/GoodsDetailController/uploadGoodsDetailInfo")
+    public int uploadGoodsDetailInfo(@RequestParam("did") int did,@RequestParam("Info") String Info,@RequestParam("type") String type)
+    {
+        System.out.println("GoodsDetailController/uploadGoodsDetailInfo: did = " + did +" Info = " + Info + "   type = "+type);
+        return goodsDetailService.uploadGoodsDetailInfo(did,Info,type);
+    }
 }

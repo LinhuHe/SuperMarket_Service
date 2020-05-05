@@ -346,11 +346,38 @@
     where od.order_uid = #{uid,jdbcType=VARCHAR} and od.order_status=3 order by od.order_date
   </select>
 
+  <select id="getAllShoperOrder" parameterType="java.lang.String" resultMap="OrderShowInfoMap">
+    select * from
+    `order` od inner join goods_detail gd on od.order_did = gd.goods_did
+    inner join goods_rough gr on gd.goods_rid = gr.goods_rid
+    where gr.goods_shoper = #{shoper_uid,jdbcType=VARCHAR} order by od.order_date asc
+  </select>
+
   <select id="getMyFinishedOrder" parameterType="java.lang.String" resultMap = "OrderShowInfoMap">
     select * from
     `order` od inner join goods_detail gd on od.order_did = gd.goods_did
     inner join goods_rough gr on gd.goods_rid = gr.goods_rid
-    where od.order_status=2 and gr.goods_shoper=#{nickname,jdbcType=VARCHAR} order by od.order_date
+    where od.order_status=2 and gr.goods_shoper=#{uid,jdbcType=VARCHAR} order by od.order_date desc
+  </select>
+
+  <update id="setOrderStatus" parameterType="java.lang.Integer">
+    update `order` set
+      order_status = #{status,jdbcType=INTEGER}
+    where order_id = #{oid,jdbcType=INTEGER}
+  </update>
+
+  <select id="shoperDayGain" parameterType="java.lang.String" resultType="java.lang.Integer">
+      select COALESCE(sum(order_price),0) from
+      `order` od inner join goods_detail gd on od.order_did = gd.goods_did
+      inner join goods_rough gr on gd.goods_rid = gr.goods_rid
+      where order_status=2 and gr.goods_shoper=#{uid} and DateDiff(od.order_date,now())=0
+  </select>
+
+  <select id="shoperTotalGain" parameterType="java.lang.String" resultType="java.lang.Integer">
+      select COALESCE(sum(order_price),0) from
+      `order` od inner join goods_detail gd on od.order_did = gd.goods_did
+      inner join goods_rough gr on gd.goods_rid = gr.goods_rid
+      where order_status=2 and gr.goods_shoper=#{uid}
   </select>
 
 </mapper>

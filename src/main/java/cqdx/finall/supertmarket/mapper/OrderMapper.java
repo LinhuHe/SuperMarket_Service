@@ -44,5 +44,9 @@ public interface OrderMapper {
     ArrayList<OrderShowInfo> getSendOrder(String uid);
     ArrayList<OrderShowInfo> getReceivedOrder(String uid);
     ArrayList<OrderShowInfo> getBackOrder(String uid);
-    ArrayList<OrderShowInfo> getMyFinishedOrder(String nickname);
+    ArrayList<OrderShowInfo> getMyFinishedOrder(String uid);
+    ArrayList<OrderShowInfo> getAllShoperOrder(String shoper_uid);
+    int setOrderStatus(int oid,int status);
+    int shoperDayGain(String uid);
+    int shoperTotalGain(String uid);
 }

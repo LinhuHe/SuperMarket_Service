@@ -1,8 +1,14 @@
 package cqdx.finall.supertmarket.entity;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-public class GoodsRough {
+public class ShoperGoodsManage {
+    private boolean unfold = false; //是否展开
+
+    //rought信息
     private Integer goodsRid;
 
     private String goodsType;
@@ -103,19 +109,41 @@ public class GoodsRough {
         this.isOnSale = isOnSale;
     }
 
-    @Override
-    public String toString() {
-        return "GoodsRough{" +
-                "goodsRid=" + goodsRid +
-                ", goodsType='" + goodsType + '\'' +
-                ", goodsName='" + goodsName + '\'' +
-                ", goodsShoper='" + goodsShoper + '\'' +
-                ", goodsProtrait='" + goodsProtrait + '\'' +
-                ", goodsDate=" + goodsDate +
-                ", goodsCollection=" + goodsCollection +
-                ", goodsSales=" + goodsSales +
-                ", goodsMoreimg='" + goodsMoreimg + '\'' +
-                ", isOnSale=" + isOnSale +
-                '}';
+    public void setRough(GoodsRough gr) {
+        this.goodsRid = gr.getGoodsRid();
+        this.goodsType = gr.getGoodsType();
+        this.goodsName = gr.getGoodsName();
+        this.goodsShoper = gr.getGoodsShoper();
+        this.goodsProtrait = gr.getGoodsProtrait();
+        this.goodsDate = gr.getGoodsDate();
+        this.goodsCollection = gr.getGoodsCollection();
+        this.goodsSales = gr.getGoodsSales();
+        this.goodsMoreimg = gr.getGoodsMoreimg();
+        this.isOnSale = gr.getIsOnSale();
+    }
+
+    //detail 信息
+    private ArrayList<GoodsDetail> detail = new ArrayList<>();
+
+    public boolean isUnfold() {
+        return unfold;
+    }
+
+    public void setUnfold(boolean unfold) {
+        this.unfold = unfold;
+    }
+
+    public ArrayList<GoodsDetail> getDetail() {
+        return detail;
+    }
+
+    public void setDetail(List<GoodsDetail> detail) {
+        //System.out.println("de dao de:"+detail);
+        this.detail.addAll(new ArrayList<GoodsDetail>(detail));
+    }
+
+    public void addDetail(GoodsDetail gd)
+    {
+        this.detail.add(gd);
     }
 }

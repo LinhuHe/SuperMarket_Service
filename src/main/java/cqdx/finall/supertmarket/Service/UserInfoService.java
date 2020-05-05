@@ -43,12 +43,12 @@ public class UserInfoService {
         return userInfoMapper.selectByPrimaryKey(uid);
     }
 
-    public void changeProtrait(MultipartFile portrait, String userName, String uid)
+    public void changeProtrait(MultipartFile portrait, String uid)
     {
-        if(portrait==null || userName ==null || uid==null) return;
+        if(portrait==null || uid==null) return;
 
-        String newPortrait = FileUpload.writeUploadFile(portrait,userName); //上传新头像
-        String portraitURL = FileUpload.service+"userPic/"+userName+"/"+newPortrait;
+        String newPortrait = FileUpload.writeUploadFile(portrait,uid); //上传新头像
+        String portraitURL = FileUpload.service+"userPic/"+uid+"/"+newPortrait;
         System.out.println("用户新的头像地址"+portraitURL);
         userInfoMapper.updatePortrait(uid,portraitURL);
     }
@@ -62,7 +62,7 @@ public class UserInfoService {
         {
             try {
                 UserInfo old = userInfoMapper.selectByPrimaryKey(uid);
-                String strs[] = old.getUserPortrait().split("/");
+                /*String strs[] = old.getUserPortrait().split("/");
                 StringBuffer newPortraitURL = new StringBuffer(); //替换原头像路径
 
                 for(int i=0;i<strs.length;i++)
@@ -85,9 +85,9 @@ public class UserInfoService {
                 //将原文件夹更改
                 file1.renameTo(new File("F:/IDEA/mycode/supertmarket/picture/" + newNickname));
                 //删除源文件夹
-                deleteFile("F:/IDEA/mycode/supertmarket/picture/" + old.getUserNickname());
+                deleteFile("F:/IDEA/mycode/supertmarket/picture/" + old.getUserNickname());*/
 
-                userInfoMapper.updateNickname(uid,newNickname,newPortraitURL.toString()); //更新
+                userInfoMapper.updateNickname(uid,newNickname,old.getUserPortrait()); //更新 因为结构原因 头像路径现在不需要修改了
 
                 return 2; //成功
             }

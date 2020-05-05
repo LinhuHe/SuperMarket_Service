@@ -22,6 +22,8 @@ public class ShopCartGoodsInfo {
 
     private String goodsShoper;
 
+    private String goodsShoperName;
+
     private String goodsProtrait;
 
     private Integer goodsCollection;
@@ -71,6 +73,14 @@ public class ShopCartGoodsInfo {
 
     public void setGoodsDid(Integer goodsDid) {
         this.goodsDid = goodsDid;
+    }
+
+    public String getGoodsShoperName() {
+        return goodsShoperName;
+    }
+
+    public void setGoodsShoperName(String goodsShoperName) {
+        this.goodsShoperName = goodsShoperName;
     }
 
     public Integer getGoodsStock() {

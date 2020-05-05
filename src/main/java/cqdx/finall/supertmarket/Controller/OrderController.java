@@ -46,11 +46,38 @@ public class OrderController {
         return orderService.getSingleStatusOrder(uid,status);
     }
 
-    @RequestMapping("/OrderController/getMyFinishedOrder/{nickname}")
-    public ArrayList<OrderShowInfo> getMyFinishedOrder(@PathVariable("nickname")  String nickname)
+    @RequestMapping("/OrderController/getMyFinishedOrder/{uid}")
+    public ArrayList<OrderShowInfo> getMyFinishedOrder(@PathVariable("uid")  String uid)
     {
-        System.out.println("OrderController/getSingleStatusOrder/nickname = "+nickname);
-        return orderService.getMyFinishedOrder(nickname);
+        System.out.println("OrderController/getSingleStatusOrder/nickname = "+uid);
+        return orderService.getMyFinishedOrder(uid);
     }
 
+    @RequestMapping("/OrderController/getAllMyUnoperatOrder/{uid}")
+    public ArrayList<ArrayList<OrderShowInfo>> getAllMyUnoperatOrder(@PathVariable("uid") String uid)
+    {
+        System.out.println("OrderController/getAllMyUnoperatOrder/uid = "+uid);
+        return orderService.getAllMyUnoperatOrder(uid);
+    }
+
+    @RequestMapping("/OrderController/getAllShoperOrder/{uid}")
+    public ArrayList<ArrayList<OrderShowInfo>> getAllShoperOrder(@PathVariable("uid") String uid)
+    {
+        System.out.println("OrderController/getAllShoperOrder/uid = "+uid);
+        return orderService.getAllShoperOrder(uid);
+    }
+
+    @RequestMapping("/OrderController/changeOrderStatus")
+    public int changeOrderStatus(@RequestParam("oid") int oid,@RequestParam("status") int status)  //将状态码改为status
+    {
+        System.out.println("OrderController/changeOrderStatus/oid = "+oid +"  status = "+status);
+        return orderService.changeOrderStatus(oid,status);
+    }
+
+    @RequestMapping("/OrderController/dayGainAndTotalGain/{uid}")
+    public ArrayList<Integer> dayGainAndTotalGain(@PathVariable("uid") String uid) // 0日收入 1总收入
+    {
+        System.out.println("OrderController/dayGainAndTotalGain/uid = "+uid);
+        return orderService.dayGainAndTotalGain(uid);
+    }
 }

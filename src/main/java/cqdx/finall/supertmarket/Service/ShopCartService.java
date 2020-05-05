@@ -3,6 +3,7 @@ package cqdx.finall.supertmarket.Service;
 import cqdx.finall.supertmarket.entity.ShopCartGoodsInfo;
 import cqdx.finall.supertmarket.entity.ShopcartKey;
 import cqdx.finall.supertmarket.mapper.ShopcartMapper;
+import cqdx.finall.supertmarket.mapper.UserInfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.origin.SystemEnvironmentOrigin;
 import org.springframework.stereotype.Service;
@@ -14,8 +15,10 @@ public class ShopCartService {
 
     @Autowired
     private ShopcartMapper shopcartMapper;
+    @Autowired
+    private UserInfoMapper userInfoMapper;
 
-    public ArrayList<ArrayList<ShopCartGoodsInfo>> getShopCartGoodsInfo(String uid) //这里获取到所有购物车中的商品，[{}{}{}{}] 格式
+    public ArrayList<ArrayList<ShopCartGoodsInfo>> getShopCartGoodsInfo(String uid) //这里获取到所有购物车中的商品，[[{}{}][{}{}]] 格式
     {
         if(uid.equals(null)) return null;
         List<ShopCartGoodsInfo> getShopcartGoods =  shopcartMapper.getShopCartGoodsInfoByUid(uid);
@@ -34,14 +37,17 @@ public class ShopCartService {
 
 
         if(getShopcartGoods.size()==1){ //只有一个
+            getShopcartGoods.get(0).setGoodsShoperName(userInfoMapper.selectByPrimaryKey(getShopcartGoods.get(0).getGoodsShoper()).getUserNickname());
             res.add(new ArrayList<ShopCartGoodsInfo>(getShopcartGoods));
             return res;
         }
 
+        getShopcartGoods.get(0).setGoodsShoperName(userInfoMapper.selectByPrimaryKey(getShopcartGoods.get(0).getGoodsShoper()).getUserNickname());
         temp.add(getShopcartGoods.get(0));
 
         for(int i=1;i<getShopcartGoods.size();i++)
         {
+            getShopcartGoods.get(i).setGoodsShoperName(userInfoMapper.selectByPrimaryKey(getShopcartGoods.get(i).getGoodsShoper()).getUserNickname());
             if(getShopcartGoods.get(i).getGoodsShoper().equals(getShopcartGoods.get(i-1).getGoodsShoper())) temp.add(getShopcartGoods.get(i));
             else{
                 //System.out.println("temp : "+temp);

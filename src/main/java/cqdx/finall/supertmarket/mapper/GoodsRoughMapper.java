@@ -23,7 +23,7 @@ public interface GoodsRoughMapper {
 
     GoodsRough selectByPrimaryKey(Integer goodsRid);
 
-    int updateByExampleSelective(@Param("record") GoodsRough record, @Param("example") GoodsRoughExample example);
+    int updateByExampleSelective(@Param("record") GoodsRough record, @Param("example") GoodsRoughExample example); //record对象则是我们需要修改的数据,example则是我们需要修改的对象
 
     int updateByExample(@Param("record") GoodsRough record, @Param("example") GoodsRoughExample example);
 

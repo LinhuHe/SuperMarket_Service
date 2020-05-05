@@ -125,13 +125,16 @@ public class OrderService {
             });
 
             if(orderlist.size()==1){ //只有一个
+                orderlist.get(0).setDesInfo(orderlist.get(0).getOrderDestination().split("/")); //destionation
+                orderlist.get(0).setDate_str(sf.format(orderlist.get(0).getOrderDate())); //date
                 res.add(new ArrayList<>(orderlist));
                 return res;
             }
 
-            temp.add(orderlist.get(0));
+
             orderlist.get(0).setDesInfo(orderlist.get(0).getOrderDestination().split("/")); //destionation
             orderlist.get(0).setDate_str(sf.format(orderlist.get(0).getOrderDate())); //date
+            temp.add(orderlist.get(0));
             for(int i=1;i<orderlist.size();i++)
             {
 
@@ -210,9 +213,9 @@ public class OrderService {
         return orderMapper.getBackOrder(uid);
     }
 
-    public ArrayList<OrderShowInfo> getMyFinishedOrder(String nickname) //商家已完成的订单
+    public ArrayList<OrderShowInfo> getMyFinishedOrder(String uid) //商家已完成的订单
     {
-        ArrayList<OrderShowInfo> myFinishedOrder = orderMapper.getMyFinishedOrder(nickname);
+        ArrayList<OrderShowInfo> myFinishedOrder = orderMapper.getMyFinishedOrder(uid);
         if(myFinishedOrder!=null && myFinishedOrder.size()>0)
         {
             SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -223,6 +226,214 @@ public class OrderService {
             }
         }
         return myFinishedOrder;
+    }
+
+    public ArrayList<ArrayList<OrderShowInfo>> getAllMyUnoperatOrder(String uid)
+    {
+        ArrayList<OrderShowInfo> orderlist = orderMapper.getAllShoperOrder(uid);
+
+        Iterator<OrderShowInfo> iter = orderlist.iterator();
+        while(iter.hasNext()) //只留下状态0,3
+        {
+            OrderShowInfo ods = iter.next();
+            if(ods.getOrderStatus() !=0 && ods.getOrderStatus() !=3)
+             iter.remove();
+        }
+
+        ArrayList<ArrayList<OrderShowInfo>> res = new ArrayList<>();
+        ArrayList<OrderShowInfo> temp = new ArrayList<>();
+        if(orderlist==null) return res;
+        //System.out.println("得到的用户orderlist" + orderlist);
+
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        if(orderlist.size()>=1)
+        {
+            Collections.sort(orderlist, new Comparator<OrderShowInfo>() {
+                @Override
+                public int compare(OrderShowInfo o1, OrderShowInfo o2) {
+                    if(o1.getOrderKey().equals(o2.getOrderKey()))
+                    {
+                        return o1.getOrderDate().compareTo(o2.getOrderDate()); //晓得排前面
+                    }
+                    else return o1.getOrderKey().compareTo(o2.getOrderKey());
+                }
+            });
+
+            if(orderlist.size()==1 && (orderlist.get(0).getOrderStatus()==0 ||orderlist.get(0).getOrderStatus()==3) ){ //只有一个 且需要操作
+                orderlist.get(0).setDesInfo(orderlist.get(0).getOrderDestination().split("/")); //destionation
+                orderlist.get(0).setDate_str(sf.format(orderlist.get(0).getOrderDate())); //date
+                res.add(new ArrayList<>(orderlist));
+                return res;
+            }
+
+
+            orderlist.get(0).setDesInfo(orderlist.get(0).getOrderDestination().split("/")); //destionation
+            orderlist.get(0).setDate_str(sf.format(orderlist.get(0).getOrderDate())); //date
+            temp.add(orderlist.get(0));
+            for(int i=1;i<orderlist.size();i++)
+            {
+                orderlist.get(i).setDesInfo(orderlist.get(i).getOrderDestination().split("/"));
+                orderlist.get(i).setDate_str(sf.format(orderlist.get(i).getOrderDate()));
+                if(orderlist.get(i).getOrderKey().equals(orderlist.get(i-1).getOrderKey()) &&
+                        (orderlist.get(i).getOrderDate().getTime()-orderlist.get(i-1).getOrderDate().getTime())<10000) //10s内 key相同
+                {
+                    temp.add(orderlist.get(i));
+                }
+                else{
+                    res.add(new ArrayList<>(temp));
+                    temp.clear();
+                    temp.add(orderlist.get(i));
+                }
+
+                if(i==orderlist.size()-1){
+                    res.add(new ArrayList<>(temp));
+                    temp.clear();
+                }
+            }
+        }
+        return res;
+    }
+
+    public ArrayList<ArrayList<OrderShowInfo>> getAllShoperOrder(String uid)
+    {
+        ArrayList<OrderShowInfo> orderlist = orderMapper.getAllShoperOrder(uid);
+
+        ArrayList<ArrayList<OrderShowInfo>> res = new ArrayList<>();
+        ArrayList<OrderShowInfo> temp = new ArrayList<>();
+        if(orderlist==null) return res;
+        //System.out.println("得到的用户orderlist" + orderlist);
+
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        if(orderlist.size()>=1)
+        {
+            Collections.sort(orderlist, new Comparator<OrderShowInfo>() {
+                @Override
+                public int compare(OrderShowInfo o1, OrderShowInfo o2) {
+                    if(o1.getOrderKey().equals(o2.getOrderKey()))
+                    {
+                        return o1.getOrderDate().compareTo(o2.getOrderDate()); //晓得排前面
+                    }
+                    else return o1.getOrderKey().compareTo(o2.getOrderKey());
+                }
+            });
+
+            if(orderlist.size()==1 && (orderlist.get(0).getOrderStatus()==0 ||orderlist.get(0).getOrderStatus()==3) ){ //只有一个 且需要操作
+                orderlist.get(0).setDesInfo(orderlist.get(0).getOrderDestination().split("/")); //destionation
+                orderlist.get(0).setDate_str(sf.format(orderlist.get(0).getOrderDate())); //date
+                res.add(new ArrayList<>(orderlist));
+                return res;
+            }
+
+
+            orderlist.get(0).setDesInfo(orderlist.get(0).getOrderDestination().split("/")); //destionation
+            orderlist.get(0).setDate_str(sf.format(orderlist.get(0).getOrderDate())); //date
+            temp.add(orderlist.get(0));
+            for(int i=1;i<orderlist.size();i++)
+            {
+                orderlist.get(i).setDesInfo(orderlist.get(i).getOrderDestination().split("/"));
+                orderlist.get(i).setDate_str(sf.format(orderlist.get(i).getOrderDate()));
+                if(orderlist.get(i).getOrderKey().equals(orderlist.get(i-1).getOrderKey()) &&
+                        (orderlist.get(i).getOrderDate().getTime()-orderlist.get(i-1).getOrderDate().getTime())<10000) //10s内 key相同
+                {
+                    temp.add(orderlist.get(i));
+                }
+                else{
+                    res.add(new ArrayList<>(temp));
+                    temp.clear();
+                    temp.add(orderlist.get(i));
+                }
+
+                if(i==orderlist.size()-1){
+                    res.add(new ArrayList<>(temp));
+                    temp.clear();
+                }
+            }
+        }
+        return res;
+    }
+
+    public int changeOrderStatus(int oid,int status)
+    {
+        Order order = orderMapper.selectByPrimaryKey(oid);
+        switch (status)
+        {
+            case 0:  //将status设置为0
+            {
+                System.out.println("/OrderService/changeOrderStatus/status=0 不应存在的值");
+                return 0;
+            }
+            case 1: //将status设置为1  原来应为0
+            {
+                if(order.getOrderStatus()==0) //从未发货到待收货
+                {
+                    System.out.println("/OrderService/changeOrderStatus/status从0转至1");
+                    return orderMapper.setOrderStatus(oid,status);
+                }
+                else{
+                    System.out.println("/OrderService/changeOrderStatus/status从"+order.getOrderStatus()+"转至1被回绝");
+                }
+                break;
+            }
+            case 2: //将status设置为2  原来应为1
+            {
+                if(order.getOrderStatus()==1) //从待收货到已收货
+                {
+                    System.out.println("/OrderService/changeOrderStatus/status从1转至2");
+                    return orderMapper.setOrderStatus(oid,status);
+                }
+                else{
+                    System.out.println("/OrderService/changeOrderStatus/status从"+order.getOrderStatus()+"转至2被回绝");
+                }
+                break;
+            }
+            case 3: //将status设置为3  原来应为0/1
+            {
+                if(order.getOrderStatus()==0 || order.getOrderStatus()==1) //从待收货到已收货
+                {
+                    System.out.println("/OrderService/changeOrderStatus/status从0/1转至3");
+                    return orderMapper.setOrderStatus(oid,status);
+                }
+                else{
+                    System.out.println("/OrderService/changeOrderStatus/status从"+order.getOrderStatus()+"转至3被回绝");
+                }
+                break;
+            }
+            case 4: //将status设置为4  原来应为3
+            {
+                if(order.getOrderStatus()==3) //同一退货
+                {
+                    System.out.println("/OrderService/changeOrderStatus/status从3转至4");
+                    return orderMapper.setOrderStatus(oid,status);
+                }
+                else{
+                    System.out.println("/OrderService/changeOrderStatus/status从"+order.getOrderStatus()+"转至4被回绝");
+                }
+                break;
+            }
+            case 5: //将status设置为5 原来应为3
+            {
+                if(order.getOrderStatus()==3) //拒绝退货
+                {
+                    System.out.println("/OrderService/changeOrderStatus/status从3转至5");
+                    return orderMapper.setOrderStatus(oid,status);
+                }
+                else{
+                    System.out.println("/OrderService/changeOrderStatus/status从"+order.getOrderStatus()+"转至5被回绝");
+                }
+                break;
+            }
+        }
+        return 0;
+    }
+
+    public ArrayList<Integer> dayGainAndTotalGain(String uid) // 0日收入 1总收入
+    {
+        ArrayList<Integer> gains = new ArrayList<>();
+        gains.add(orderMapper.shoperDayGain(uid));
+        gains.add(orderMapper.shoperTotalGain(uid));
+        return gains;
     }
 
 }

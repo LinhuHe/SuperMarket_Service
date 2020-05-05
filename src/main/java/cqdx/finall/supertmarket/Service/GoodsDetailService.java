@@ -1,12 +1,14 @@
 package cqdx.finall.supertmarket.Service;
 
 import cqdx.finall.supertmarket.entity.GoodsDetail;
+import cqdx.finall.supertmarket.entity.GoodsDetailExample;
 import cqdx.finall.supertmarket.entity.OrderGoodsInfo;
 import cqdx.finall.supertmarket.mapper.GoodsDetailMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,5 +77,46 @@ public class GoodsDetailService {
         return goodsDetailMapper.getDidByRidCSS(rid,color,tempStyle,size);
     }
 
+    public int uploadGoodsDetailInfo(int did,String Info,String type)
+    {
+        GoodsDetailExample gde = new GoodsDetailExample();
+        GoodsDetailExample.Criteria criteria = gde.createCriteria();
+        criteria.andGoodsDidEqualTo(did);
+
+        switch (type)
+        {
+            case "stock":
+            {
+                GoodsDetail newData = new GoodsDetail();
+                try {
+                    newData.setGoodsStock(Integer.valueOf(Info));
+                }
+                catch(Exception e)
+                {
+                    System.out.println(e);
+                    return 0;
+                }
+                return goodsDetailMapper.updateByExampleSelective(newData,gde);
+            }
+            case "price":
+            {
+                GoodsDetail newData = new GoodsDetail();
+                try {
+                    newData.setGoodsPrice(BigDecimal.valueOf(Integer.valueOf(Info)));
+                }
+                catch(Exception e)
+                {
+                    System.out.println(e);
+                    return 0;
+                }
+                return goodsDetailMapper.updateByExampleSelective(newData,gde);
+            }
+            case "deleteType":
+            {
+                return goodsDetailMapper.deleteByExample(gde);
+            }
+        }
+        return  0;
+    }
 
 }
