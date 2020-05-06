@@ -72,4 +72,17 @@ public class GoodsDetail {
     public void setGoodsPrice(BigDecimal goodsPrice) {
         this.goodsPrice = goodsPrice;
     }
+
+    @Override
+    public String toString() {
+        return "GoodsDetail{" +
+                "goodsDid=" + goodsDid +
+                ", goodsStock=" + goodsStock +
+                ", goodsRid=" + goodsRid +
+                ", goodsStyle='" + goodsStyle + '\'' +
+                ", goodsColor='" + goodsColor + '\'' +
+                ", goodsSize='" + goodsSize + '\'' +
+                ", goodsPrice=" + goodsPrice +
+                '}';
+    }
 }

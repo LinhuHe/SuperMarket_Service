@@ -116,12 +116,19 @@
             <version>1.0.6</version>
         </dependency>
         <dependency>
-            <groupId>net.sf.json-lib</groupId>
+            <groupId>net.sf.json-lib</groupId> <!--这个json包不好用 换一个官方的-->
             <artifactId>json-lib</artifactId>
             <version>2.2.3</version>
             <classifier>jdk15</classifier><!-- 指定jdk版本 -->
         </dependency>
         <!-- Json依赖架包下载 -->
+
+        <!--官方json包-->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20180813</version><!--注意：20160810版本不支持JSONArray-->
+        </dependency>
 
 
     </dependencies>

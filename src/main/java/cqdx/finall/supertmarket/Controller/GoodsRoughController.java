@@ -7,10 +7,7 @@ import cqdx.finall.supertmarket.entity.GoodsRough;
 import cqdx.finall.supertmarket.entity.GoodsShowInfo;
 import cqdx.finall.supertmarket.entity.ShoperGoodsManage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
@@ -63,5 +60,17 @@ public class GoodsRoughController {
         return goodsRoughService.updateGoodsRoughInfo(rid,Info,type);
     }
 
+    @RequestMapping("/GoodsRough/addNewGoods")
+    public int addNewGoods(@RequestParam("portrait") MultipartFile portrait,@RequestParam("goodsInfo") String goodsInfo) //添加goodsrough 和detail信息 返回rid
+    {
+        System.out.println("/GoodsRough/addNewGoods goodsInfo+ = "+goodsInfo);
+        return goodsRoughService.addNewGoods(portrait,goodsInfo);
+    }
+
+    @RequestMapping("/GoodsRough/upLoadImage")
+    public int upLoadImage(@RequestParam("moreimg") MultipartFile moreimg,@RequestParam("uid") String uid,@RequestParam("rid") int rid)
+    {
+        return goodsRoughService.upLoadImage(moreimg,uid,rid);
+    }
 
 }

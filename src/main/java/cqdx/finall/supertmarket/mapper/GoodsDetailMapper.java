@@ -39,6 +39,6 @@ public interface GoodsDetailMapper {
     List<String> getAllColorsByRid(int rid);
     List<String> getStyleByColor(int rid,String color);
     List<String> getSizeByColorStyle(int rid,String color,String style);
-    int getDidByRidCSS(int rid,String color ,String style,String size);
+    Integer getDidByRidCSS(int rid,String color ,String style,String size);
     void desStockNums(int did);
 }

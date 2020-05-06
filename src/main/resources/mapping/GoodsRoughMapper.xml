@@ -317,6 +317,21 @@
     where goods_rid = #{rid,jdbcType=INTEGER}
   </update>
 
+  <insert id="insertAndReturnRid" parameterType="cqdx.finall.supertmarket.entity.GoodsRough" useGeneratedKeys="true" keyProperty="goodsRid">
+    insert into goods_rough (goods_rid, goods_type, goods_name,
+      goods_shoper, goods_protrait, goods_date,
+      goods_collection, goods_sales, goods_moreImg,
+      is_on_sale)
+    values (#{goodsRid,jdbcType=INTEGER}, #{goodsType,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR},
+      #{goodsShoper,jdbcType=VARCHAR}, #{goodsProtrait,jdbcType=VARCHAR}, #{goodsDate,jdbcType=TIMESTAMP},
+      #{goodsCollection,jdbcType=INTEGER}, #{goodsSales,jdbcType=INTEGER}, #{goodsMoreimg,jdbcType=VARCHAR},
+      #{isOnSale,jdbcType=INTEGER})
+  </insert>
 
+  <update id="setMoreImgs">
+    update  goods_rough
+    set goods_moreImg = concat(goods_moreImg,'/',#{imgURL,jdbcType=VARCHAR})
+    where goods_rid = #{rid,jdbcType=INTEGER}
+  </update>
 
 </mapper>

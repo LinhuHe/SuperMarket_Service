@@ -37,4 +37,6 @@ public interface GoodsRoughMapper {
     void addOrderNums(int rid);
     void desOrderNums(int rid);
 
+    int insertAndReturnRid(GoodsRough record); //rid 保存在传入的参数中
+    int setMoreImgs(String imgURL,int rid);
 }

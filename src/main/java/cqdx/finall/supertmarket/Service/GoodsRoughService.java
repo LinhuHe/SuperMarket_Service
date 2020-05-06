@@ -5,15 +5,17 @@ import cqdx.finall.supertmarket.FileUpload;
 import cqdx.finall.supertmarket.entity.*;
 import cqdx.finall.supertmarket.mapper.GoodsDetailMapper;
 import cqdx.finall.supertmarket.mapper.GoodsRoughMapper;
+
+import org.json.JSONObject;
+import org.json.JSONArray;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class GoodsRoughService {
@@ -144,4 +146,74 @@ public class GoodsRoughService {
         return  0;
     }
 
+    public int addNewGoods(MultipartFile portrait, String goodsInfo) //添加goodsrough 和detail信息 返回rid
+    {
+        //解析 储存rough
+        int rid = 0;
+        JSONObject JSONInfo = new JSONObject(goodsInfo);
+        String portraitURL = new String();
+
+        if(portrait!=null) {
+            portraitURL=FileUpload.writeUploadFile(portrait, JSONInfo.getString("shoper")); //写入图片 返货图名
+        }
+
+        try {
+            GoodsRough goodsRough = new GoodsRough();
+
+            goodsRough.setIsOnSale(1);
+            goodsRough.setGoodsName(JSONInfo.getString("name"));
+            goodsRough.setGoodsShoper(JSONInfo.getString("shoper"));
+            goodsRough.setGoodsType(JSONInfo.getString("type"));
+            goodsRough.setGoodsProtrait(portraitURL);
+            goodsRough.setGoodsDate(new Date());
+            goodsRough.setGoodsMoreimg(portraitURL);
+
+            GoodsRoughExample gre = new GoodsRoughExample();
+            GoodsRoughExample.Criteria criteria_gr = gre.createCriteria();
+            criteria_gr.andGoodsShoperEqualTo(JSONInfo.getString("shoper"));
+            criteria_gr.andGoodsNameEqualTo(JSONInfo.getString("name"));
+
+            if(goodsRoughMapper.countByExample(gre)>0) return -1; //存在同名
+            else goodsRoughMapper.insertAndReturnRid(goodsRough);  //存入rough 同一商家商品名字不能相同
+
+            rid = goodsRough.getGoodsRid();
+            System.out.println("新产品的rid：" + rid);
+
+            //解析 储存details
+            JSONArray jsonDetails = JSONInfo.getJSONArray("uploadDetails");
+            for (int i = 0; i < jsonDetails.length(); i++) {
+                GoodsDetail temp = new GoodsDetail();
+                JSONObject singleJsonDetail = jsonDetails.getJSONObject(i);
+
+                temp.setGoodsStock((singleJsonDetail.getInt("goodsStock")));
+                temp.setGoodsPrice(BigDecimal.valueOf(singleJsonDetail.getDouble("goodsPrice")));
+                temp.setGoodsColor(singleJsonDetail.getString("goodsColor"));
+                temp.setGoodsStyle(singleJsonDetail.getString("goodsStyle"));
+                temp.setGoodsSize(singleJsonDetail.getString("goodsSize"));
+                temp.setGoodsRid(rid);
+
+                if(goodsDetailMapper.getDidByRidCSS(rid,temp.getGoodsColor(),temp.getGoodsStyle(),temp.getGoodsSize())==null) //不存在
+                    goodsDetailMapper.insert(temp);
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+            return 0;
+        }
+
+        return rid;
+    }
+
+    public int upLoadImage(MultipartFile moreimg, String uid, int rid)
+    {
+        if(moreimg!=null)
+        {
+            String newPic =  FileUpload.writeUploadFile(moreimg, uid);
+            System.out.println("MoreImgs的新图片："+newPic);
+            return goodsRoughMapper.setMoreImgs(newPic,rid);
+        }
+        else
+            return 0;
+    }
 }

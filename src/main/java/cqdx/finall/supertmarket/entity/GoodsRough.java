@@ -15,9 +15,9 @@ public class GoodsRough {
 
     private Date goodsDate;
 
-    private Integer goodsCollection;
+    private Integer goodsCollection=0;
 
-    private Integer goodsSales;
+    private Integer goodsSales=0;
 
     private String goodsMoreimg;
 

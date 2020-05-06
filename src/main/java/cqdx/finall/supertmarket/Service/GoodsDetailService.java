@@ -68,7 +68,7 @@ public class GoodsDetailService {
         return sizes;
     }
 
-    public int getDidByRidCSS(int rid,String color ,String style,String size){
+    public Integer getDidByRidCSS(int rid,String color ,String style,String size){
         String tempStyle = style;
         if(style.equals("无")) tempStyle = null;
 

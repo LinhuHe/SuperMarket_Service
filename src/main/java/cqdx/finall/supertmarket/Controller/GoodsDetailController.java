@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.websocket.server.PathParam;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -40,7 +41,7 @@ public class GoodsDetailController {
 
     //根据rid color style size 唯一确定 did
     @RequestMapping("/GoodsDetailController/getDidByRidCSS")
-    public int getDidByRidCSS(@RequestParam("rid") int rid, @RequestParam("color") String color,@RequestParam("style") String style, @RequestParam("size") String size)
+    public Integer getDidByRidCSS(@RequestParam("rid") int rid, @RequestParam("color") String color,@RequestParam("style") String style, @RequestParam("size") String size)
     {
         System.out.println("GoodsDetailController/getDidByRidCSS: rid = " + rid +" color = " + color + "   sytle = "+style + "   size = "+size);
         return goodsDetailService.getDidByRidCSS(rid,color,style,size);
@@ -51,5 +52,15 @@ public class GoodsDetailController {
     {
         System.out.println("GoodsDetailController/uploadGoodsDetailInfo: did = " + did +" Info = " + Info + "   type = "+type);
         return goodsDetailService.uploadGoodsDetailInfo(did,Info,type);
+    }
+
+    @RequestMapping("/classTest")
+    public int classTest(String gds)
+    {
+        System.out.println("yes"+"\n"+gds);
+        /*for(GoodsDetail gd:gds) {
+            System.out.println(gd);
+        }*/
+        return 0;
     }
 }
